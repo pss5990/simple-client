@@ -24,28 +24,35 @@ spec:
         limits:
           memory: "8Gi"
           cpu: "2"
+    - name: kaniko
+      image: gcr.io/kaniko-project:debug
+      command:
+      - /busybox/cat
+      tty: true
+      volumeMounts:
+      - name: kaniko-secret
+        mountPath: /secret
+      env:
+      - name: GOOGLE_APPLICATION_CREDENTIALS
+        value: /secret/kaniko-secret.json
+  volumes:
+  - name: kaniko-secret
+    secret:
+      secretName: kaniko-secret
         """
             }
         }
 
     stages {
-            stage('Compile Stage New') {
-                steps {  // no container directive is needed as the maven container is the default
-                    sh "mvn clean compile"   
-                }
-            }
-            
-            stage('Testing Stage') {
-                steps {  // no container directive is needed as the maven container is the default
-                    sh "mvn test"   
-                }
-            }
             stage('Package Stage') {
                steps {  // no container directive is needed as the maven container is the default
                     sh "mvn clean package"   
                 }
             }
-        
-
+        stage('Docker Image Build'){
+            steps {
+                
+            }
+        }
     }
 }
