@@ -3,7 +3,7 @@ pipeline {
     kubernetes {
                 label "simple-client"
                 idleMinutes 0      //Timeout for longer running slaves
-                defaultContainer 'ci-sales'
+                defaultContainer maven
                 yaml """
 apiVersion: v1
 kind: Pod
@@ -28,31 +28,23 @@ spec:
         }
 
     stages {
-        stage ('Compile Stage') {
-            steps {
-                sh 'mvn -version'
-                withMaven(maven : 'maven_3_5_0') {
-                    sh 'mvn clean compile'
+            stage('Compile Stage') {
+                steps {  // no container directive is needed as the maven container is the default
+                    sh "mvn clean compile"   
                 }
             }
-        }
-
-        stage ('Testing Stage') {
-
-            steps {
-                withMaven(maven : 'maven_3_5_0') {
-                    sh 'mvn test'
+            
+            stage('Testing Stage') {
+                steps {  // no container directive is needed as the maven container is the default
+                    sh "mvn test"   
                 }
             }
-        }
-
-
-        stage ('Deployment Stage') {
-            steps {
-                withMaven(maven : 'maven_3_5_0') {
-                    sh 'mvn deploy'
+            stage('Compile Stage') {
+                steps {  // no container directive is needed as the maven container is the default
+                    sh "mvn clean package"   
                 }
             }
-        }
+        
+
     }
 }
