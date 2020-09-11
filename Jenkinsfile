@@ -31,7 +31,6 @@ spec:
     stages {
             stage('Compile Stage New') {
                 steps {  // no container directive is needed as the maven container is the default
-                    sh "java -version"
                     sh "mvn clean compile"   
                 }
             }
