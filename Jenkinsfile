@@ -14,7 +14,7 @@ metadata:
 spec:
   containers:
     - name: maven
-      image: busybox
+      image: maven:3.6.3-jdk-8-slim
       command: ["tail", "-f", "/dev/null"]  # this or any command that is bascially a noop is required, this is so that you don't overwrite the entrypoint of the base container
       imagePullPolicy: Always # use cache or pull image for agent
       resources:  # limits the resources your build contaienr
