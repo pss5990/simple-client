@@ -49,10 +49,11 @@ spec:
                     sh "mvn clean package"   
                 }
             }
-        stage('Docker Image Build'){
-            steps {
-                
-            }
-        }
+//        stage('Docker Image Build'){
+//            steps {
+//                container(name: 'kaniko', shell: '/busybox/sh'){
+//                }      
+//            }
+//        }
     }
 }
