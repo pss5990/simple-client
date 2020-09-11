@@ -40,7 +40,7 @@ spec:
                     sh "mvn test"   
                 }
             }
-            stage('Compile Stage') {
+            stage('Package Stage') {
                 steps {  // no container directive is needed as the maven container is the default
                     sh "mvn clean package"   
                 }
