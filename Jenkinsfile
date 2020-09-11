@@ -3,9 +3,8 @@ pipeline {
 
     stages {
         stage ('Compile Stage') {
-            sh 'mvn -version'
-
             steps {
+                sh 'mvn -version'
                 withMaven(maven : 'maven_3_5_0') {
                     sh 'mvn clean compile'
                 }
