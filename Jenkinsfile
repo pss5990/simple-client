@@ -31,20 +31,20 @@ spec:
     stages {
             stage('Compile Stage') {
                 steps {  // no container directive is needed as the maven container is the default
-                    sh "mvn clean package"   
+                    sh "mvn clean complie"   
                 }
             }
             
-//            stage('Testing Stage') {
-//                steps {  // no container directive is needed as the maven container is the default
-//                    sh "mvn test"   
-//                }
-//            }
-//            stage('Package Stage') {
-//                steps {  // no container directive is needed as the maven container is the default
-//                    sh "mvn clean package"   
-//                }
-//            }
+            stage('Testing Stage') {
+                steps {  // no container directive is needed as the maven container is the default
+                    sh "mvn test"   
+                }
+            }
+            stage('Package Stage') {
+               steps {  // no container directive is needed as the maven container is the default
+                    sh "mvn clean package"   
+                }
+            }
         
 
     }
