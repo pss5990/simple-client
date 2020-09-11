@@ -1,0 +1,35 @@
+Configuration:
+  status: warn
+
+  Properties:
+    Property:
+      - name: log-path
+        value: service_logs
+          
+  Appenders:
+    Console:
+      name: Console_Appender
+      target: SYSTEM_OUT
+      PatternLayout:
+        Pattern:  "%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L [%t] - %m %n"
+    RollingFile:
+      - name: Rolling_File_Appender
+        fileName: ${log-path}/serviceLogs.log
+        filePattern: ${log-path}/serviceLogs.log-%d{MM-dd-yyyy}.%i.log.gz
+        ignoreExceptions: false
+        PatternLayout:
+          Pattern:  "%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L %-4r [%t] %5p %c{1} %x - %m %n"
+        Policies:
+          TimeBasedTriggeringPolicy:
+            interval: ${sys:logDaysPerLogFile:-1}
+          SizeBasedTriggeringPolicy:
+            size: ${sys:logSizeInMBPerLogFile:-20} MB                     
+  Loggers:
+    Root:
+      includeLocation: true
+      level: INFO
+      AppenderRef:
+        - ref: Console_Appender
+          level: TRACE
+        - ref: Rolling_File_Appender
+          level: TRACE
