@@ -3,7 +3,7 @@ pipeline {
     kubernetes {
                 label "simple-client"
                 idleMinutes 0      //Timeout for longer running slaves
-                defaultContainer maven
+                defaultContainer 'maven'
                 yaml """
 apiVersion: v1
 kind: Pod
