@@ -1,4 +1,5 @@
 pipeline {
+    agent {
     kubernetes {
                 label "cifd-api"
                 idleMinutes 0      //Timeout for longer running slaves
