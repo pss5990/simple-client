@@ -1,7 +1,7 @@
 pipeline {
     agent {
     kubernetes {
-                label "cifd-api"
+                label "simple-client"
                 idleMinutes 0      //Timeout for longer running slaves
                 defaultContainer 'ci-sales'
                 yaml """
