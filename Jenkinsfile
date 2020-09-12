@@ -49,11 +49,13 @@ spec:
                     sh "mvn clean package"   
                 }
             }
-//        stage('Docker Image Build'){
-//            steps {
-//                container(name: 'kaniko', shell: '/busybox/sh'){
-//                }      
-//            }
-//        }
+        stage('Docker Image Build'){
+            steps {
+//                git 'https://github.com/jenkinsci/docker-jnlp-slave.git'
+                container(name: 'kaniko', shell: '/busybox/sh'){
+                    sh '/kaniko/executor -f `pwd`/Dockerfile -c `pwd` --insecure --skip-tls-verify --cache=true --destination=mydockerregistry:5000/myorg/myimage'
+                }      
+            }
+        }
     }
 }
