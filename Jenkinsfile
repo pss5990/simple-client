@@ -25,7 +25,7 @@ spec:
           memory: "8Gi"
           cpu: "2"
     - name: kaniko
-      image: gcr.io/kaniko-project:debug
+      image: gcr.io/kaniko-project/executor:debug
       command:
       - /busybox/cat
       tty: true
