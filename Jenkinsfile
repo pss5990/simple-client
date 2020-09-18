@@ -1,7 +1,7 @@
 pipeline {
     agent {
     kubernetes {
-                label "simple-client"
+                label "simple-client-${UUID.randomUUID().toString()}"
                 idleMinutes 0      //Timeout for longer running slaves
                 defaultContainer 'maven'
                 yaml """
