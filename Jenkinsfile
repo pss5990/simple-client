@@ -37,7 +37,8 @@ spec:
         value: /secret/kaniko-secret.json
     - name: helm
       image: alpine/helm:latest
-      command: cat
+      command:
+      - cat
       tty: true
 
   volumes:
