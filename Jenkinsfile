@@ -35,6 +35,11 @@ spec:
       env:
       - name: GOOGLE_APPLICATION_CREDENTIALS
         value: /secret/kaniko-secret.json
+    - name: helm
+      image: alpine/helm:latest
+      command: cat
+      tty: true
+
   volumes:
   - name: kaniko-secret
     secret:
@@ -51,13 +56,17 @@ spec:
             }
         stage('Docker Image Build'){
             steps {
-//                git 'https://github.com/jenkinsci/docker-jnlp-slave.git'
                 container(name: 'kaniko', shell: '/busybox/sh'){
-                    sh 'pwd'
-                    sh 'ls'
-                    sh 'ls target/'
                     sh '/kaniko/executor -f `pwd`/Dockerfile -c `pwd` --insecure --skip-tls-verify --cache=true --destination=eu.gcr.io/loans-278211/my-image:master'
                 }      
+            }
+        }
+        stage('Deploy'){
+            steps{
+                container(name: 'helm'){
+                    sh "/helm init --client-only --skip-refresh"
+                    sh "/helm upgrade --install --wait --set image.repository=eu.gcr.io/loans-278211/my-image,image.tag=master release-name"
+                }
             }
         }
     }
