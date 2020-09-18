@@ -67,7 +67,7 @@ spec:
                 container(name: 'helm'){
                     sh 'helm version'
                   //  sh 'helm init --client-only --skip-refresh'
-                    sh 'helm upgrade --install --wait --set image.repository=eu.gcr.io/loans-278211/my-image,image.tag=master release-name'
+                    sh 'helm upgrade --install --wait --set image.repository=eu.gcr.io/loans-278211/my-image,image.tag=master release-name `pwd`/helm'
                 }
             }
         }
