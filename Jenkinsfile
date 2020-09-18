@@ -55,8 +55,7 @@ spec:
                 container(name: 'kaniko', shell: '/busybox/sh'){
                     sh 'pwd'
                     sh 'ls'
-                    sh 'cd target'
-                    sh 'ls'
+                    sh 'ls target/'
                     sh '/kaniko/executor -f `pwd`/Dockerfile -c `pwd` --insecure --skip-tls-verify --cache=true --destination=eu.gcr.io/loans-278211/my-image:master'
                 }      
             }
