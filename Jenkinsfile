@@ -36,7 +36,7 @@ spec:
       - name: GOOGLE_APPLICATION_CREDENTIALS
         value: /secret/kaniko-secret.json
     - name: helm
-      image: alpine/helm:latest
+      image: lachlanevenson/k8s-helm:v3.1.1
       command:
       - cat
       tty: true
