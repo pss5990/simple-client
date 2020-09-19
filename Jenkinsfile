@@ -12,7 +12,7 @@ metadata:
     app: api
     build: jenkins_slave
 spec:
-  serviceAccountName: jenkins
+  serviceAccountName: helm-sa
   containers:
     - name: maven
       image: maven:3.6.3-jdk-8-slim
