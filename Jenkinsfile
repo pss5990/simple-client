@@ -20,7 +20,7 @@ spec:
       imagePullPolicy: Always # use cache or pull image for agent
       resources:  # limits the resources your build contaienr
         requests:
-          memory: "200Mi"
+          memory: "300Mi"
           cpu: "100m"
         limits:
           memory: "500Mi"
