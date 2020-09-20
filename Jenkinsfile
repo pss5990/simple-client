@@ -50,7 +50,7 @@ spec:
             }
         }
     environment{
-        helm-release-name = 'ms1-simple-client'
+        helm_release_name = 'ms1-simple-client'
     }
 
     stages {
@@ -70,7 +70,7 @@ spec:
             steps{
                 container(name: 'helm'){
                     sh 'helm version'
-                      sh 'helm upgrade --install --wait --set image.repository=eu.gcr.io/loans-278211/my-image,image.tag=master ${helm-release-name} `pwd`/helm'
+                      sh 'helm upgrade --install --wait --set image.repository=eu.gcr.io/loans-278211/my-image,image.tag=master ${helm_release_name} `pwd`/helm'
                 }
             }
         }
