@@ -20,10 +20,10 @@ spec:
       imagePullPolicy: Always # use cache or pull image for agent
       resources:  # limits the resources your build contaienr
         requests:
-          memory: "300Mi"
+          memory: "500Mi"
           cpu: "100m"
         limits:
-          memory: "500Mi"
+          memory: "600Mi"
           cpu: "500m"
     - name: kaniko
       image: gcr.io/kaniko-project/executor:debug
