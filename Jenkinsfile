@@ -20,11 +20,11 @@ spec:
       imagePullPolicy: Always # use cache or pull image for agent
       resources:  # limits the resources your build contaienr
         requests:
-          memory: "1Gi"
-          cpu: "250m"
+          memory: "200Mi"
+          cpu: "100m"
         limits:
-          memory: "2Gi"
-          cpu: "1"
+          memory: "500Mi"
+          cpu: "500m"
     - name: kaniko
       image: gcr.io/kaniko-project/executor:debug
       command:
@@ -35,11 +35,11 @@ spec:
         mountPath: /secret
       resources:  # limits the resources your build contaienr
         requests:
-          memory: "1Gi"
-          cpu: "250m"
+          memory: "200Mi"
+          cpu: "100m"
         limits:
-          memory: "2Gi"
-          cpu: "1"
+          memory: "500Mi"
+          cpu: "500m"
       env:
       - name: GOOGLE_APPLICATION_CREDENTIALS
         value: /secret/kaniko-secret.json
@@ -50,11 +50,11 @@ spec:
       tty: true
       resources:  # limits the resources your build contaienr
         requests:
-          memory: "1Gi"
-          cpu: "250m"
+          memory: "200Mi"
+          cpu: "100m"
         limits:
-          memory: "2Gi"
-          cpu: "1"
+          memory: "500Mi"
+          cpu: "500m"
   volumes:
   - name: kaniko-secret
     secret:
