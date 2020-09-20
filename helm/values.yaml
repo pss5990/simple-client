@@ -48,7 +48,7 @@ ingress:
     # kubernetes.io/tls-acme: "true"
   hosts:
     - host: client.sbx.lushlife.in
-      paths: []
+      paths:
   tls:
     - secretName: k8s-tls-secret
       hosts:
