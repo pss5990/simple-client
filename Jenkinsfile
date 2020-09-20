@@ -50,7 +50,7 @@ spec:
             }
         }
     environment{
-        helm-release-name = 'simple-client'
+        helm-release-name = 'ms1-simple-client'
     }
 
     stages {
