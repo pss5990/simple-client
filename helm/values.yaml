@@ -49,7 +49,7 @@ ingress:
   hosts:
     - host: client.sbx.lushlife.in
       paths:
-        - path: /
+        - /
   tls:
     - secretName: k8s-tls-secret
       hosts:
