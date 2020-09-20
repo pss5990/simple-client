@@ -2,6 +2,7 @@ package com.lbg.client;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 
 /**
  * If you run this class within your IDE, my doing a right click and saying run as java application, the application will be deployed in an 
@@ -14,6 +15,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 
 @SpringBootApplication
+@EnableCircuitBreaker
 public class MainApplication {
 
     public static void main(final String[] args) {
