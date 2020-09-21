@@ -63,11 +63,11 @@ spec:
             }
         }
     environment{
-    	helm_release_name = 'ms1-hystrix-client-${BRANCH_NAME}'
-    	docker_image = 'eu.gcr.io/loans-278211/${helm_release_name}'
+    	helm_release_name = "ms1-hystrix-client-${BRANCH_NAME}"
+    	docker_image = "eu.gcr.io/loans-278211/${helm_release_name}"
         docker_image_tag = "${BRANCH_NAME}"
-        ingress_domain = 'client-${BRANCH_NAME}.sbx.lushlife.in'
-        tls_secret_name = 'k8s-tls-secret'
+        ingress_domain = "client-${BRANCH_NAME}.sbx.lushlife.in"
+        tls_secret_name = "k8s-tls-secret"
     }
 
     stages {
