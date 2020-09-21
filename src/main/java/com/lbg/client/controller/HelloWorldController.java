@@ -30,11 +30,17 @@ public class HelloWorldController {
 
   @RequestMapping(value = "/hello", method = RequestMethod.GET)
   @HystrixCommand(fallbackMethod = "fallbackMethod")
-  public ResponseEntity<String> sayHelloWorld() {
+  public ResponseEntity<String> sayHelloWithFallback() {
     RestTemplate restTemplate = new RestTemplate();
     logger.info("Server Url->{}", () -> serverURL);
     ResponseEntity<String> re = restTemplate.getForEntity(serverURL, String.class);
     return new ResponseEntity<String>(re.getBody(), HttpStatus.OK);
+  }
+  
+  @RequestMapping(value = "/hello1", method = RequestMethod.GET)
+  @HystrixCommand(fallbackMethod = "fallbackMethod")
+  public ResponseEntity<String> sayHello() {
+    return new ResponseEntity<String>("Test message from hello1", HttpStatus.OK);
   }
 
   public ResponseEntity<String> fallbackMethod() {
