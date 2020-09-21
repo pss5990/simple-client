@@ -68,7 +68,7 @@ spec:
         branch_name = 'master'
         docker_image_tag = '${branch_name}'
         ingress_domain = 'client-${branch_name}.sbx.lushlife.in'
-        tls.secret.name = 'k8s-tls-secret'
+        tls_secret_name = 'k8s-tls-secret'
     }
 
     stages {
@@ -88,7 +88,7 @@ spec:
         stage('Deploy'){
             steps{
                 container(name: 'helm'){
-                      sh "helm upgrade --install --wait --set image.repository=${docker_image},image.tag=${docker_image_tag},ingress.hosts[0].host=${ingress_domain},ingress.hosts[0].paths[0]='/',ingress.tls[0].hosts[0]=${ingress_domain},ingress.tls[0].secretName=${tls.secret.name} ${helm_release_name} `pwd`/helm"
+                      sh "helm upgrade --install --wait --set image.repository=${docker_image},image.tag=${docker_image_tag},ingress.hosts[0].host=${ingress_domain},ingress.hosts[0].paths[0]='/',ingress.tls[0].hosts[0]=${ingress_domain},ingress.tls[0].secretName=${tls_secret_name} ${helm_release_name} `pwd`/helm"
                 }
             }
         }
