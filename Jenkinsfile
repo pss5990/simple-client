@@ -64,10 +64,10 @@ spec:
         }
     environment{
     	helm_release_name = 'ms1-hystrix-client'
-    	docker_image = eu.gcr.io/loans-278211/${helm_release_name}
-        branch_name = master
+    	docker_image = 'eu.gcr.io/loans-278211/${helm_release_name}'
+        branch_name = 'master'
         docker_image_tag = ${branch_name}
-        ingress_domain = client-${branch_name}.sbx.lushlife.in
+        ingress_domain = 'client-${branch_name}.sbx.lushlife.in'
     }
 
     stages {
