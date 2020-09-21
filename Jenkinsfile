@@ -80,7 +80,7 @@ spec:
         stage('Docker Image Build'){
             steps {
                 container(name: 'kaniko', shell: '/busybox/sh'){
-                    sh '/kaniko/executor -f `pwd`/Dockerfile -c `pwd` --insecure --skip-tls-verify --cache=true --destination=${docker_image}:${docker_image_tag}'
+                    sh "/kaniko/executor -f `pwd`/Dockerfile -c `pwd` --insecure --skip-tls-verify --cache=true --destination=${docker_image}:${docker_image_tag}"
                 }      
             }
         }
