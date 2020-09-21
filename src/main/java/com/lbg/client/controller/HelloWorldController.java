@@ -37,13 +37,7 @@ public class HelloWorldController {
     return new ResponseEntity<String>(re.getBody(), HttpStatus.OK);
   }
   
-  @RequestMapping(value = "/hello1", method = RequestMethod.GET)
-  @HystrixCommand(fallbackMethod = "fallbackMethod")
-  public ResponseEntity<String> sayHello() {
-    return new ResponseEntity<String>("Test message from hello1", HttpStatus.OK);
-  }
-
   public ResponseEntity<String> fallbackMethod() {
-    return new ResponseEntity<String>("I am a fallback message using hstrix", HttpStatus.OK);
+    return new ResponseEntity<String>("I am a fallback message using hystrix", HttpStatus.OK);
   }
 }
