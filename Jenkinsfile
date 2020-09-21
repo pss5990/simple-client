@@ -65,9 +65,9 @@ spec:
     environment{
     	helm_release_name = 'ms1-hystrix-client'
     	docker_image = 'eu.gcr.io/loans-278211/${helm_release_name}'
-        branch_name = 'master'
-        docker_image_tag = '${branch_name}'
-        ingress_domain = 'client-${branch_name}.sbx.lushlife.in'
+        code_branch_name = 'master'
+        docker_image_tag = '${code_branch_name}'
+        ingress_domain = 'client-${code_branch_name}.sbx.lushlife.in'
         tls_secret_name = 'k8s-tls-secret'
     }
 
