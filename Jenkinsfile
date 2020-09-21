@@ -63,7 +63,11 @@ spec:
             }
         }
     environment{
-        helm_release_name = 'ms1-simple-client'
+    	helm_release_name = 'ms1-hystrix-client'
+    	docker_image = eu.gcr.io/loans-278211/${helm_release_name}
+        branch_name = master
+        docker_image_tag = ${branch_name}
+        ingress_domain = client-${branch_name}.sbx.lushlife.in
     }
 
     stages {
@@ -75,7 +79,7 @@ spec:
         stage('Docker Image Build'){
             steps {
                 container(name: 'kaniko', shell: '/busybox/sh'){
-                    sh '/kaniko/executor -f `pwd`/Dockerfile -c `pwd` --insecure --skip-tls-verify --cache=true --destination=eu.gcr.io/loans-278211/my-image:master'
+                    sh '/kaniko/executor -f `pwd`/Dockerfile -c `pwd` --insecure --skip-tls-verify --cache=true --destination=${docker_image}:${docker_image_tag}'
                 }      
             }
         }
@@ -83,7 +87,8 @@ spec:
             steps{
                 container(name: 'helm'){
                     sh 'helm version'
-                      sh 'helm upgrade --install --wait --set image.repository=eu.gcr.io/loans-278211/my-image,image.tag=master ${helm_release_name} `pwd`/helm'
+                      sh 'helm upgrade --install --wait --set image.repository=${docker_image},image.tag=${docker_image_tag},ingress.hosts[0].host=${ingress_domain},
+                      ingress.tls[0].hosts[0]=${ingress_domain} ${helm_release_name} `pwd`/helm'
                 }
             }
         }
