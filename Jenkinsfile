@@ -87,7 +87,7 @@ spec:
             steps{
                 container(name: 'helm'){
                     sh 'helm version'
-                      sh 'helm upgrade --install --wait --set image.repository=${docker_image},image.tag=${docker_image_tag},ingress.hosts[0].host=${ingress_domain},
+                      sh 'helm upgrade --install --wait --set image.repository=${docker_image},image.tag=${docker_image_tag},ingress.hosts[0].host=${ingress_domain}, \
                       ingress.tls[0].hosts[0]=${ingress_domain} ${helm_release_name} `pwd`/helm'
                 }
             }
