@@ -72,8 +72,8 @@ spec:
 
     stages {
             stage('Package Stage') {
-               sh 'printenv'
                steps {  // no container directive is needed as the maven container is the default
+               		sh 'printenv'
                     sh "mvn clean package"   
                 }
             }
